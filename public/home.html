@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter | Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="images/logo.png" class="logo">
+        <div>
+            <button class="btn">Home<button>
+            <a href="./profile.html"><button class="btn">Profile</button></a>
+        </div>
+            
+    </div>
+
+    <div class="line"></div>
+
+    <div class="x-body">
+        <div class="post-msg">
+            <h1>Post A New Tweet </h1>
+            <form id="tweet-form">
+                <input name="msg" id="mypost" placeholder="What's Happening...?!" required="true">
+                <button type="submit" class="btn" id="post-tweet">Tweet</button>
+            </form>
+        </div>
+
+        <!-- all posts here -->
+        <div id="posts"></div>
+
+    </div>
+
+</body>
+
+<!-- axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script src="home.js"></script>
+
+</html>

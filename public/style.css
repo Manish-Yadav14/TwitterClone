@@ -1,0 +1,257 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.line{
+    width: 100vw;
+    height: 1.5px;
+    background-color: #9a9a9a;
+}
+
+.container{
+    margin: 50px 140px;
+    align-self: center;
+    width: 80vw;
+    height: 80vh;
+    /* border: 2px solid black; */
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box{
+    width: 500px;
+    /* border: 2px solid black; */
+    border-radius: 9px;
+    margin: 20px 20px;
+    padding: 20px 20px;
+}
+
+.box h1{
+    font-weight:600;
+    font-size: 3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.box h2{
+    font-size: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+
+
+.form{
+    /* border: 2px solid black; */
+    margin: 20px 0px;
+}
+
+.form label {
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.form input {
+    width: 440px;
+    height: 40px;
+    background-color: rgb(252, 252, 252);
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 5px 0px;
+    padding: 8px;
+    border: 2px solid rgb(160, 159, 159);
+}
+
+#login{
+    cursor: pointer;
+    width: 440px;
+    margin:10px 2px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #1d9bf0;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+#create{
+    cursor: pointer;
+    background-color:  rgb(252, 252, 252);
+    width: 440px;
+    font-size: 20px;
+    border-radius: 8px;
+    margin:5px 2px;
+    color:#1d9bf0;
+    padding: 10px;
+    border: 2px solid rgb(160, 159, 159);
+}
+
+#signup{
+    cursor: pointer;
+    width: 440px;
+    margin:10px 2px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #1d9bf0;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+
+.navbar{
+    display: flex;
+    height: 80px;
+    /* border: 2px solid red; */
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.logo{
+    width: 75px;
+    height: 75px;
+    margin-left: -10px; 
+    margin-right: 500px;
+    margin-top: 5px;
+}
+
+.navbar h1{
+    padding: 30px;
+    font-size: 24px;
+}
+
+.btn{
+    cursor: pointer;
+    width: 75px;
+    margin:8px 8px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: #1d9bf0;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+
+
+.x-body{
+    width: 1000px;
+    height: 150vh;
+    /* border: 2px solid #212121; */
+    margin: 10px 150px;
+}
+
+.post-msg{
+    width: 600px;
+    height: 150px;
+    padding: 10px;
+    margin: 0px 100px ;
+    display: flex;
+    flex-direction: column;
+}
+
+#mypost{
+    border: 1px solid #b5b2b2;
+    border-radius: 10px;
+    width: 600px;
+    height: 50px;
+    font-size: 20px;
+    /* border:none; */
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+/* --------------------------------------POST Tweets------------------------------------------------ */
+
+.post-card {
+    width: 700px; /* Adjust as needed */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin: 30px 110px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: -5px;
+
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.name {
+    margin: 0;
+    font-size: 18px;
+}
+
+.username {
+    margin: 0;
+    color: #666;
+}
+
+.tweet {
+    margin-bottom: 10px;
+}
+
+.interactions {
+    display: flex;
+    align-items: center;
+}
+
+#like-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/like-icon.png'); 
+    background-size: cover;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
+#like-count {
+    margin-left: 5px;
+    font-size: 16px;
+    margin-top: 2px;
+    color: #212121;
+}
+
+/* --------------------------------------Profile Page--------------------------------- */
+
+.profile-box{
+    margin: auto;
+    width: 30vw;
+    height: 40vh;
+    /* border: 2px solid black;*/
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.profile-box img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin: 2px;
+}
