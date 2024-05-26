@@ -9,19 +9,19 @@ const bcrypt = require('bcryptjs');
 const {SECRET_KEY} = process.env;
 const {isAuthenticated} = require('./middleware/authentication');
 
+//middleware
 app.use(express.static('public'));
 app.use(express.json());
-// app.use(cors());
 
 //homepage
 app.get('/home',isAuthenticated,(req,res)=>{
-    res.status(201).send({msg:"Welcome"});
+    return res.status(201).send({msg:"Welcome"});
 })
 
 // Generate a JWT token
 const generateToken = (user) => {
-    return jwt.sign({ id: user._id, email: user.email , name:user.name}, SECRET_KEY, {
-      expiresIn: "1h", // Token expires in 1 hour
+    return jwt.sign({email: user.email , name:user.name}, SECRET_KEY, {
+      expiresIn: "2h", // Token expires in 1 hour
     });
 };
 
@@ -32,7 +32,7 @@ app.post('/register',async (req,res)=>{
         //checking if user exists already
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            res.status(400).send({ error: 'Username already exists' });
+            return res.status(400).send({ error: 'Username already exists' });
         }
 
         //hashing the password
@@ -44,11 +44,11 @@ app.post('/register',async (req,res)=>{
         const token = generateToken(user);
         console.log({token});
         if(user){
-            res.status(201).send({token});
+            return res.status(201).send({token});
         }
         
     } catch (error) {
-        res.status(401).send(`Error: ${error}`);
+        return res.status(401).send(`Error: ${error}`);
     }
 })
 
@@ -59,26 +59,27 @@ app.post('/login',async(req,res)=>{
         //check for user exists or not...
         const user = await User.findOne({email});
         if(!user){
-            res.status(404).send({ error: 'User not found' });
+            return res.status(404).send({ error: 'User not found' });
         }
 
         // Compare hashed passwords
         const isMatch = bcrypt.compare(password, user.password);
         if (!isMatch) {
-            res.status(400).json({ error: "Invalid credentials." });
+            return res.status(400).json({ error: "Invalid credentials." });
         }
 
         //generate token
         const token = generateToken(user);
 
         console.log({token});
-        res.status(201).send({token});
+        return res.status(201).send({token});
         
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
 })
 
+//post tweet
 app.post('/tweet',async (req,res)=>{
     try {
         const {email,name,msg} = req.body;
@@ -87,18 +88,30 @@ app.post('/tweet',async (req,res)=>{
         if(!Tweetx){
             res.status(401).send({message:'Tweet not posted successfully'});
         }
-        res.status(201).send({email,name,msg});
+        return res.status(201).send({email,name,msg});
     } catch (error) {
-        res.status(404).send(`Error: ${error}`);
+        return res.status(404).send(`Error: ${error}`);
     }
 })
 
+//show all tweets
 app.get('/allTweets',async(req,res)=>{ //get all msg on page
     try {
         const Tweets = await Tweet.find({});
-        res.status(201).json({Tweets});
+        return res.status(201).json({Tweets});
     }catch (error) {
-        res.status(500).json({msg:error});
+        return res.status(500).json({msg:error});
+    }
+})
+
+// show user Tweets only
+app.post('/userTweets',async(req,res)=>{
+    try {
+        const {email} = req.body;
+        const tweets = await Tweet.find({email});
+        return res.status(201).json({tweets});
+    } catch (error) {
+        return res.status(500).json({msg:error});console.log(error);
     }
 })
 

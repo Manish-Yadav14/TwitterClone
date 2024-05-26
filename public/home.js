@@ -39,17 +39,19 @@ tweet_form.addEventListener("submit", async (e) => {
     }
   } catch (error) {
     console.log(error);
-    alert("Error with posting your tweet");
+    alert("Error!!!!");
   }
 });
 
 // _____________________________________Show Tweets____________________________________________
 
-function changeLikeBtn(){
-  document.getElementById('like-icon').addEventListener('click',(e)=>{
-    console.log(e);
-  })
-}
+// function changeLikeBtn(){
+//   document.getElementById('like-icon').addEventListener('click',(e)=>{
+//     console.log(e);
+//   })
+// }
+// changeLikeBtn();
+
 let posts = document.getElementById('posts');
 const showTweets = async ()=>{
   try {
@@ -79,4 +81,6 @@ const showTweets = async ()=>{
 }
 
 showTweets();
+
+// ------------------Like Handling----------------------------------
 
