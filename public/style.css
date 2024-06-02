@@ -216,11 +216,24 @@
     align-items: center;
 }
 
-#like-icon {
+.like{
+    outline: none;
     cursor: pointer;
     width: 20px;
     height: 20px;
     background-image: url('./images/like-icon.png'); 
+    background-size: cover;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.liked{
+    pointer-events: none;
+    outline: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/liked-icon.png'); 
     background-size: cover;
     margin-right: 5px;
     margin-left: 5px;

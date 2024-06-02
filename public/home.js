@@ -19,7 +19,7 @@ fetch("/home", {
 
 // -----------------------------------------Post Tweet---------------------------------------
 let tweet_form = document.getElementById("tweet-form");
-console.log(tweet_form);
+// console.log(tweet_form);
 tweet_form.addEventListener("submit", async (e) => {
   e.preventDefault();
   let decodedToken = JSON.parse(atob(token?.split(".")[1]));
@@ -44,23 +44,15 @@ tweet_form.addEventListener("submit", async (e) => {
 });
 
 // _____________________________________Show Tweets____________________________________________
-
-// function changeLikeBtn(){
-//   document.getElementById('like-icon').addEventListener('click',(e)=>{
-//     console.log(e);
-//   })
-// }
-// changeLikeBtn();
-
 let posts = document.getElementById('posts');
 const showTweets = async ()=>{
   try {
     const {data: { Tweets },} = await axios.get("/allTweets");
-    console.log(Tweets);
     Tweets.forEach((tweet)=>{
       const tweetElem = document.createElement('div');
-      tweetElem.innerHTML +=`<div class="post-card">
-                          <div class="profile">
+      tweetElem.classList.add('post-card');
+      tweetElem.setAttribute('data-id', tweet._id);
+      tweetElem.innerHTML +=`<div class="profile">
                             <img src="./images/profile-new.jpg" alt="Profile Picture">
                             <div class="profile-info">
                               <h2 class="name">${tweet.name}</h2>
@@ -69,10 +61,9 @@ const showTweets = async ()=>{
                           </div>
                           <p class="tweet">${tweet.msg}</p>
                           <div class="interactions">
-                              <span id="like-icon"></span>
-                              <span id="like-count">10</span>
-                          </div>  
-                        </div>`;
+                              <span class="like-button like"></span>
+                              <span id="like-count">${tweet.likes}</span>
+                          </div>`;
       posts.insertBefore(tweetElem, posts.firstChild)
     });
   } catch (error) {
@@ -83,4 +74,32 @@ const showTweets = async ()=>{
 showTweets();
 
 // ------------------Like Handling----------------------------------
+
+document.addEventListener('DOMContentLoaded',()=>{
+  let posts = document.getElementById('posts');
+  posts.addEventListener('click', async(e) => {
+    if (e.target.classList.contains('like-button')) {
+      const tweetElement = e.target.closest('.post-card');
+      const tweetId = tweetElement.getAttribute('data-id');
+      console.log(tweetId);
+
+      try {
+        const res = await axios.patch(`/userTweets/${tweetId}`);
+        console.log(res);
+        const updatedTweet = res.data;
+        console.log(updatedTweet);
+
+        // Update the like count in the UI
+        const likeCountElement = tweetElement.querySelector('#like-count');
+        likeCountElement.textContent = updatedTweet.likes;
+
+        // Change the button state to "Liked"
+        e.target.classList.remove('like');
+        e.target.classList.add('liked');
+      } catch (error) {
+        console.error('Error liking tweet:', error);
+      }
+    }
+  })
+})
 

@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const connectDB =require('./db/connect');
-require('dotenv').config();
 const User = require('./models/user');
 const Tweet = require('./models/tweets');
 const jwt = require("jsonwebtoken");
@@ -114,6 +114,27 @@ app.post('/userTweets',async(req,res)=>{
         return res.status(500).json({msg:error});console.log(error);
     }
 })
+
+//for like count 
+app.patch('/userTweets/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+    //   console.log(id);
+      const tweet = await Tweet.findById(id)
+    //   console.log(tweet);
+      if (!tweet) {
+        return res.status(404).json({ message: 'Tweet not found' });
+      }
+
+      tweet.likes += 1;
+      await tweet.save();
+  
+      return res.status(200).json(tweet);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Error liking tweet' });
+    }
+  });
 
 
 // -------------------------------------- Server Initialisation----------------------------------------

@@ -17,7 +17,9 @@ const showTweets = async()=>{
     console.log(tweets);
     tweets.map((tweet)=>{
         const tweetElem = document.createElement('div');
-        tweetElem.innerHTML +=`<div class="post-card">
+        tweetElem.classList.add('post-card');
+      tweetElem.setAttribute('data-id', tweet._id);
+        tweetElem.innerHTML +=`
                             <div class="profile">
                               <img src="./images/profile-new.jpg" alt="Profile Picture">
                               <div class="profile-info">
@@ -27,12 +29,12 @@ const showTweets = async()=>{
                             </div>
                             <p class="tweet">${tweet.msg}</p>
                             <div class="interactions">
-                                <span id="like-icon"></span>
-                                <span id="like-count">10</span>
-                            </div>  
-                          </div>`;
+                                <span class="like-button like"></span>
+                                <span id="like-count">${tweet.likes}</span>
+                            </div> `;
         posts.insertBefore(tweetElem, posts.firstChild)
       });
 }
 
 showTweets();
+
